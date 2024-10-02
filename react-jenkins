@@ -25,11 +25,12 @@ pipeline {
 
         stage('DOCKER PUSH ') {
             steps {
-            withCredentials([string(credentialsId: 'verma00', variable: 'new')]) {
+            withCredentials([string(credentialsId: 'verma00', variable: 'pass')]) {
             sh 'docker login -u verma00 -p ${new}'
             sh 'docker tag node verma00/reactjs:latest '
             sh 'docker push verma00/reactjs:latest'
             sh 'docker logout'
+
                 }
             }
         }
