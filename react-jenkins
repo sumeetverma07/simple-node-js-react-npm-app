@@ -33,5 +33,29 @@ pipeline {
                 }
             }
         }
+
+
+        stage('Approval') {
+            steps {
+                input 'Approval for production'
+            }
+        } 
+
+        stage('Deployment') {
+            steps {
+                sh 'docker run -d verma00/reactjs:latest'
+            }
+
+            post {
+               
+                failure{
+                    echo 'failure'
+                    mail bcc: '', body: 'hii project is failed', cc: '', from: '', replyTo: '', subject: 'project for node', to: 'vermasumeet391@gmail.com'
+                }
+                
+                }
+            }
+        }
+
+       
     }
-}
