@@ -18,12 +18,11 @@ pipeline {
 
          stage('Docker Build') {
             steps {
-               dir('simple-node-js-react-npm-app ') {
                 sh 'docker build -t java .'
                 }
-                 }
+
+                }
                     
             
             }
         }
-    }
