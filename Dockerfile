@@ -12,7 +12,7 @@ RUN npm install
 # Copy the rest of the application code
 
 # Expose the port
-EXPOSE 8080
+EXPOSE 80
 
 # Set the default command to start the application
 CMD ["npm", "start"]
