@@ -1,1 +1,29 @@
 
+pipeline {
+    agent any
+
+        tools {
+            nodejs 'nodejs'
+        }
+    
+
+    stages {
+    
+            stage('Git Checkout') {
+             steps {
+            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'docker-hub', url: 'https://github.com/sumeetverma07/simple-node-js-react-npm-app.git']])
+             }
+
+            }
+
+         stage('Docker Build') {
+            steps {
+               dir('simple-node-js-react-npm-app ') {
+                sh 'docker build -t java .'
+                }
+                 }
+                    
+            
+            }
+        }
+    }
