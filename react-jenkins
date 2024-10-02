@@ -21,8 +21,17 @@ pipeline {
                 sh 'docker build -t java .'
                 }
 
+            }
+
+        stage('DOCKER PUSH ') {
+            steps {
+            withCredentials([string(credentialsId: 'verma00', variable: 'new')]) {
+            sh 'docker login -u verma00 -p ${new}'
+            sh 'docker tag node verma00/reactjs:latest '
+            sh 'docker push verma00/reactjs:latest'
+            sh 'docker logout'
                 }
-                    
-            
             }
         }
+    }
+}
