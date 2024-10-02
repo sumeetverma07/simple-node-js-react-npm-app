@@ -43,7 +43,7 @@ pipeline {
 
         stage('Deployment') {
             steps {
-                sh 'docker run -d verma00/reactjs:latest'
+                sh 'docker run -itd verma00/reactjs:latest'
             }
 
             post {
