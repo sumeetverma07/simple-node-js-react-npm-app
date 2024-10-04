@@ -12,6 +12,7 @@ pipeline {
             stage('Git Checkout') {
              steps {
            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sumeetverma07/simple-node-js-react-npm-app.git']])
+                }
             }
 
          stage('Docker Build') {
@@ -21,5 +22,4 @@ pipeline {
 
             }
         }
-    }
-}
+    }    
