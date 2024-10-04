@@ -22,5 +22,39 @@ pipeline {
 
             }
 
-}
-}
+        stage('DOCKER PUSH ') {
+            steps {
+            withCredentials([string(credentialsId: 'verma00', variable: 'pass')]) {
+            sh 'docker login -u verma00 -p ${pass}'
+            sh 'docker tag node verma00/reactjs:latest '
+            sh 'docker push verma00/reactjs:latest'
+            sh 'docker logout'
+
+                }
+            }
+        }
+
+
+        stage('Approval') {
+            steps {
+                input 'Approval for production'
+            }
+        } 
+
+        stage('Deployment') {
+            steps {
+                sh 'docker run -itd verma00/reactjs:latest'
+            }
+
+            post {
+               
+                failure{
+                    echo 'failure'
+                    mail bcc: '', body: 'hii project is failed', cc: '', from: '', replyTo: '', subject: 'project for node', to: 'vermasumeet391@gmail.com'
+                }
+                
+                }
+            }
+        }
+
+    }
