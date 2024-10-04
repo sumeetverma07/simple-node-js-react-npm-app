@@ -3,7 +3,7 @@ pipeline {
     agent any
 
         tools {
-            nodejs 'nodejs'
+            nodejs "nodejs"
         }
     
 
@@ -11,16 +11,15 @@ pipeline {
     
             stage('Git Checkout') {
              steps {
-            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'docker-hub', url: 'https://github.com/sumeetverma07/simple-node-js-react-npm-app.git']])
-             }
-
+           checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sumeetverma07/simple-node-js-react-npm-app.git']])
             }
 
          stage('Docker Build') {
             steps {
-                sh 'docker build -t node .'
+                sh 'docker build -t java .'
                 }
 
             }
         }
+    }
 }
